@@ -79,6 +79,8 @@ def count_word(filename, word):
     """
     word_list = []
     lines = read_file(filename)
+
+    #Account for lowercase and uppercase at the beginning
     word_re =  "\s[" + word[0].lower() + "|" + word[0].upper() + "]" + word[1:] + "s?"
     for line in lines:
         word_list = word_list + re.findall(word_re,line)
