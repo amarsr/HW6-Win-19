@@ -51,17 +51,23 @@ def find_emails(filename):
     """ Return a list of valid emails in the text file with the given filename """
     email_list = []
     lines = read_file(filename)
-    email_re = ""
+    email_re = "[\.\w]+@[\.\w]+"
     for line in lines:
         email_list = email_list + re.findall(email_re,line)
-
+    print(email_list)
     return email_list
 
 
 
 def find_phoneNumbers(filename):
     """ Return a list of valid phone numbers in the text file with the given filename """
-    pass
+    phone_list = []
+    lines = read_file(filename)
+    phone_re = "\d{10}|\d{3}\.\d{3}\.\d{4}|\d{3}\s\d{3}\s\d{4}|\d{3}-\d{3}-\d{4}|\d{3}/\d{3}-\d{4}|\(\d{3}\)\s\d{3}-\d{4}"
+    for line in lines:
+        phone_list = phone_list + re.findall(phone_re,line)
+    print(phone_list)
+    return phone_list
 
 ## Extra credit
 def count_word(filename, word):
@@ -71,7 +77,14 @@ def count_word(filename, word):
         word -- the word to look for
         return -- a count of the number of times the word or its plural appears in the file 
     """
-    pass
+    word_list = []
+    lines = read_file(filename)
+    word_re =  "\s[" + word[0].lower() + "|" + word[0].upper() + "]" + word[1:] + "s?"
+    for line in lines:
+        word_list = word_list + re.findall(word_re,line)
+    count = len(word_list)
+    return count
+    
         
 
 ## Do not modify the code below
@@ -109,7 +122,7 @@ if __name__ == "__main__":
         '5-16-1919',
         '2.4.91'])
 
-    """
+    
     print("--------------------------------------------")
     #Report the accuracy of find_emails function
     print("Testing find_emails function")
@@ -123,6 +136,7 @@ if __name__ == "__main__":
         'apache@localhost','antranig@caret.cam.ac.uk',
         'gopal.ramasammycook@gmail.com'
     ])
+
 
     print("--------------------------------------------")
     # Report the accuracy of find_phoneNumbers function
@@ -154,7 +168,7 @@ if __name__ == "__main__":
         print("You earned 3 extra points for finding the correct number")
     else:
         print("Count word for shoud return 10 and it returned: " + str(count))
-    """
+    
     
 
 
