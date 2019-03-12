@@ -1,4 +1,4 @@
-# Name: Your Name Goes Here
+# Name: Amar Srinivasan
 # SI 206
 # HW6 - Regular Expressions
 
@@ -32,23 +32,31 @@ def find_dates(filename):
     pass
     
     # initialize a list of dates to an empty list
-    
+    date_list = []
     # read the lines from the file into a list
-    
+    lines = read_file(filename)
     # define the regular expression
-    
+    date_re = "\d{1,2}-\d{1,2}-\d{2,4}|\d{1,2}/\d{1,2}/\d{2,4}|\d{1,2}\.\d{1,2}\.\d{2,4}"
     # loop through the list of lines from the file
-    
+    for line in lines:
     	# get the list of items that match the regular expression from the current line
-    
+        date_list = date_list + re.findall(date_re,line)
     	# add the list of items that matched to the list of dates found so far
     
     # return the list of dates
+    return date_list
 
 
 def find_emails(filename):
     """ Return a list of valid emails in the text file with the given filename """
-    pass
+    email_list = []
+    lines = read_file(filename)
+    email_re = ""
+    for line in lines:
+        email_list = email_list + re.findall(email_re,line)
+
+    return email_list
+
 
 
 def find_phoneNumbers(filename):
@@ -101,6 +109,7 @@ if __name__ == "__main__":
         '5-16-1919',
         '2.4.91'])
 
+    """
     print("--------------------------------------------")
     #Report the accuracy of find_emails function
     print("Testing find_emails function")
@@ -145,7 +154,7 @@ if __name__ == "__main__":
         print("You earned 3 extra points for finding the correct number")
     else:
         print("Count word for shoud return 10 and it returned: " + str(count))
-    
+    """
     
 
 
